@@ -18,9 +18,7 @@ def properties_detail(request, pk):
     property = Property.objects.get(pk=pk)
     serializer = PropertiesDetailSerializer(property, many=False)
 
-    return JsonResponse({
-        serializer.data,
-    })
+    return JsonResponse(serializer.data)
 
 
 @api_view(["GET"])

@@ -8,7 +8,11 @@ from rest_framework.decorators import (
 
 from .forms import PropertyForm
 from .models import Property, Reservation
-from .serializers import PropertiesListSerializer, PropertiesDetailSerializer
+from .serializers import (
+    PropertiesListSerializer,
+    PropertiesDetailSerializer,
+    ReservationsListSerializer
+)
 
 
 @api_view(["GET"])
@@ -20,6 +24,17 @@ def properties_detail(request, pk):
 
     return JsonResponse(serializer.data)
 
+
+@api_view(["GET"])
+@permission_classes([])
+@authentication_classes([])
+def properties_reservations(request, pk):
+    property = Property.objects.get(pk=pk)
+    reservations = property.reservations.all()
+
+    serializer = ReservationsListSerializer(reservations, many=True)
+
+    return JsonResponse(serializer.data, safe=False)
 
 @api_view(["GET"])
 @permission_classes([])

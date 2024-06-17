@@ -34,7 +34,7 @@ class Reservation(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     number_of_nights = models.PositiveIntegerField()
-    guest = models.PositiveIntegerField()
+    guests = models.PositiveIntegerField()
     total_price = models.FloatField()
     created_by = models.ForeignKey(
         User, related_name="reservations", on_delete=models.CASCADE)

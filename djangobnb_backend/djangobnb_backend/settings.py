@@ -18,7 +18,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
+if DEBUG:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "188.166.156.107"]
+else:
+    ALLOWED_HOSTS = ["188.166.156.107"]
 
 AUTH_USER_MODEL = "useraccount.User"
 

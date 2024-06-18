@@ -11,7 +11,7 @@ staticfiles/
 media/
 
 # Secret keys
-*.env.dev
+# *.env.dev
 
 # Development files
 *.log

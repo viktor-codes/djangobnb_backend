@@ -5,7 +5,11 @@ WORKDIR /usr/src/djangobnb_backend
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update && apt-get install -y netcat
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       netcat-openbsd \
+       # other packages you need \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip
 COPY ./requirements.txt .

@@ -24,9 +24,9 @@ SITE_ID = 1
 WEBSITE_URL = "http://localhost:8000"
 
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    },
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
 }
 
 SIMPLE_JWT = {

@@ -3,7 +3,7 @@ from django.db import models
 from useraccount.models import User
 
 
-class Convesation(models.Model):
+class Conversation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     users = models.ManyToManyField(User, related_name='conversations')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -13,7 +13,7 @@ class Convesation(models.Model):
 class ConversationMessage(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     conversation = models.ForeignKey(
-        Convesation, on_delete=models.CASCADE, related_name='messages')
+        Conversation, on_delete=models.CASCADE, related_name='messages')
     body = models.TextField()
     sent_to = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='received_messages')

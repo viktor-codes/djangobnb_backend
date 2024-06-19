@@ -12,8 +12,6 @@ services:
   web:
     build: ./djangobnb_backend
     command: gunicorn djangobnb_backend.wsgi:application --bind 0.0.0.0:8000
-    environment:
-      - DJANGO_SETTINGS_MODULE=djangobnb_backend.settings
     volumes:
       - ./djangobnb_backend/:/usr/src/djangobnb_backend/
       - media_volume:/usr/src/djangobnb_backend/media
@@ -29,6 +27,8 @@ services:
     command: daphne --bind 0.0.0.0 -p 8002 djangobnb_backend.asgi:application
     ports:
       - 8002:8002
+    env_file:
+      - ./.env
   db:
     image: postgres:15
     volumes:
